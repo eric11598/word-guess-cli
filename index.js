@@ -24,7 +24,16 @@ function play(){
     inquirer.prompt([
         {
         name: "guess",
-        message: "What is your guess? you have "+guessNumber+" remaining"
+        message: "What is your guess? you have "+guessNumber+" remaining",
+        validate: function validateGuess(name){
+        
+            var letters = /^[A-Za-z]+$/;
+
+            if(!name.match(letters)||name.length>1)
+                return 'Please enter 1 valid letter'
+            else
+                return true 
+        }
         }
     ]).then(function(answers) {
         guessNumber--;
